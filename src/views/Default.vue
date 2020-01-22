@@ -2,13 +2,16 @@
  * @Author: JieLinghu
  * @Date: 2020-01-16 14:45:55
  * @LastEditors  : JieLinghu
- * @LastEditTime : 2020-01-17 13:03:45
+ * @LastEditTime : 2020-01-19 17:42:42
  * @description: 
  -->
 <template>
   <div class="home">
     <HeaderItem />
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
+
     <FooterItem />
   </div>
 </template>
@@ -28,3 +31,11 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .1s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>

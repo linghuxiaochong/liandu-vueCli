@@ -1,9 +1,11 @@
-
 $red-header-bg:#c30300;
 $red-color:#e10602;
 $green-color:#22960f;
 $white-color:#ffffff;
 $gray-color:#fafbfb;
+$gray2-color:#f2f4f5;
+$primary-color: #8c0776;
+$text-gray-color:#84929c;
 $border-color:rgba(0, 0, 0, 0.1);
 
 $content-width:1300px;
@@ -37,6 +39,10 @@ input:focus {
     border: none;
 }
 
+table {
+    border-spacing: 0;
+}
+
 ol,
 ul,
 li,
@@ -44,4 +50,407 @@ p {
     padding: 0;
     margin: 0;
     list-style: none;
+}
+
+table tr {
+    td {
+        text-align: center;
+    }
+
+    td:first-child,
+    td:first-child div {
+        text-align: left;
+    }
+
+    td:last-child,
+    td:last-child div {
+        text-align: right;
+    }
+}
+
+.content {
+    width: $content-width;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.coin {
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.coin>img {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.error-label,
+.success-label {
+    height: 18px;
+    border-radius: 2px;
+    line-height: 18px;
+    color: white;
+    font-size: 12px;
+    padding: 0 9px;
+}
+
+.error-label {
+    background-color: $red-color;
+}
+
+.success-label {
+    background-color: $green-color;
+}
+
+.error-color {
+    color: $red-color !important;
+}
+
+.success-color {
+    color: $green-color !important;
+}
+
+.ellips {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.ellips_line2,
+.ellips_line3,
+.ellips_line4,
+.ellips_line5 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ellips_line2 {
+    -webkit-line-clamp: 2;
+}
+
+.ellips_line3 {
+    -webkit-line-clamp: 3;
+}
+
+.ellips_line4 {
+    -webkit-line-clamp: 4;
+}
+
+.ellips_line5 {
+    -webkit-line-clamp: 5;
+}
+
+
+
+.block-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    position: relative;
+    height: 18px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.block-title::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 18px;
+    border-radius: 4px;
+    background-color: $red-color;
+}
+
+.banner {
+    width: 648px;
+    height: 378px;
+
+    .banner-item {
+        width: 648px;
+        height: 378px;
+        position: relative;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        p {
+            font-size: 18px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 10px;
+            color: $white-color;
+            background: linear-gradient(top, transparent, black);
+            background: -ms-linear-gradient(top, transparent, black);
+            background: -webkit-linear-gradient(top, transparent, black);
+            background: -moz-linear-gradient(top, transparent, black);
+        }
+
+    }
+
+}
+
+.banner-side {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+
+    >div {
+        width: 303px;
+        height: 184px;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        p {
+            font-size: 14px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 10px;
+            color: $white-color;
+            background: linear-gradient(top, transparent, black);
+            background: -ms-linear-gradient(top, transparent, black);
+            background: -webkit-linear-gradient(top, transparent, black);
+            background: -moz-linear-gradient(top, transparent, black);
+
+            i {
+                font-size: 18px;
+                opacity: 0.7;
+                margin-right: 4px;
+            }
+        }
+    }
+
+}
+
+// 新闻卡片
+.list-card {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid $border-color;
+    align-items: center;
+
+    .cover {
+        margin-right: 10px;
+        width: 256px;
+        height: 154px;
+        overflow: hidden;
+        flex-shrink: 0;
+        border-radius: 4px;
+        ;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .list-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 154px;
+
+        h5 {
+            @extend .ellips_line5;
+            font-weight: normal;
+            color: $text-gray-color;
+            flex-grow: 2;
+            margin: 6px 0;
+            overflow: hidden;
+
+        }
+
+        p {
+            img {
+                width: 24px;
+                height: 24px;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+
+            .time {
+                color: $text-gray-color;
+                margin: 20px;
+            }
+        }
+    }
+
+}
+
+// 查看更多按钮
+.check-more {
+    height: 40px;
+    background-color: $gray2-color;
+    line-height: 40px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 4px;
+    color: $text-gray-color;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* 侧边栏 */
+
+.aside-card {
+    padding-top: 6px;
+    width: 100%;
+    position: relative;
+    background-color: $gray-color;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0 0px 10px 2px rgba(132, 146, 156, 0.1);
+}
+
+.aside-card div:last-child {
+    border: none;
+}
+
+.aside-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 46px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.aside-card-title-name {
+    font-size: 16px;
+    color: #333333;
+    font-weight: bold;
+}
+
+.aside-card-title-more {
+    font-size: 14px;
+    color: $text-gray-color;
+    cursor: pointer;
+}
+
+.aside-card::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: $red-color;
+    border-radius: 2px;
+}
+
+.aside-text {
+    padding: 0 10px 30px;
+    font-size: 14px;
+}
+
+.page-class {
+    text-align: center;
+    margin: 10px 0;
+
+    // 修改iviewPage样式
+
+    .ivu-page-next:hover,
+    .ivu-page-prev:hover,
+    .ivu-page-item:hover,
+    .ivu-page-item-active {
+        border-color: $red-color !important;
+
+        a {
+            color: $red-color !important;
+        }
+    }
+
+    .ivu-page-item-jump-next:hover,
+    .ivu-page-item-jump-prev:hover {
+        a {
+            color: $red-color !important;
+        }
+    }
+
+    a:hover {
+        color: $red-color !important;
+    }
+
+}
+
+/* 专题卡片 */
+.thematic {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.thematic-card {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 32%;
+    cursor: pointer;
+    margin-bottom:10px;
+
+    .thematic-img {
+        /* width:290px; */
+        height: 200px;
+        background-color: #cccccc;
+
+        img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+    }
+
+    h4 {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 20px;
+    }
+
+    >div {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+        >p {
+            font-size: 16px;
+            line-height: 32px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+
+            .dian {
+                display: inline-block;
+                background-color: #84929c;
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                vertical-align: middle;
+                margin-right: 5px;
+            }
+        }
+    }
 }

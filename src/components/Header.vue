@@ -2,7 +2,7 @@
  * @Author: JieLinghu
  * @Date: 2020-01-16 14:45:55
  * @LastEditors  : JieLinghu
- * @LastEditTime : 2020-01-17 17:16:13
+ * @LastEditTime : 2020-01-21 09:34:46
  * @description: 
  -->
 <template>
@@ -35,9 +35,9 @@
             </router-link>
           </li>
           <li v-show="!show" class="login-bar-item">
-            <a href="./myIndex.html">
+            <router-link to="/myIndex">
               <span class="s1 login-btn">{{ info ? info.username || info.mobile : "" }}</span>
-            </a>
+            </router-link>
           </li>
           <li v-show="!show" class="login-bar-item">
             <span class="s1 login-btn" @click="signOut()">退出</span>
@@ -54,9 +54,9 @@
               :class="['iconfont',barListShow?'icon-guanbi':'icon-quanbu']"
               @click="barListShow=!barListShow;searchShow=false;"
             ></i>
-            <a href="./index.html">
+            <router-link to="/">
               <img class="brand" src="@/assets/img/brand_logo.png" alt />
-            </a>
+            </router-link>
             <i
               v-if="mobile"
               class="iconfont icon-sousuo"
@@ -70,7 +70,7 @@
               v-for="(item,index) in menuList"
               :key="index"
             >
-              <p @click="()=>{window.location.href=item.path}">
+              <p @click="()=>{$router.push(pathList[index][0])}">
                 {{item.firstMenue}}&nbsp;&nbsp;
                 <i
                   v-if="item.secondMenueList && item.secondMenueList.length>0"
@@ -86,26 +86,26 @@
                   v-for="(item2,index2) in item.secondMenueList"
                   :key="index2"
                 >
-                  <a :href="item2.path">{{item2.menue}}</a>
+                  <router-link :to="{path:pathList[index][index2]}">{{item2.menue}}</router-link>
                 </li>
               </ul>
             </li>
             <li v-if="mobile">
               <ul class="login-button">
                 <li v-show="show" class="login-bar-item">
-                  <a href="./login.html">
+                  <router-link to="/login">
                     <span class="login-btn">登录</span>
-                  </a>
+                  </router-link>
                 </li>
                 <li v-show="show" class="login-bar-item">
-                  <a href="./login.html">
+                  <router-link to="/login">
                     <span class="login-btn">注册</span>
-                  </a>
+                  </router-link>
                 </li>
                 <li v-show="!show" class="login-bar-item">
-                  <a href="./myIndex.html">
+                  <router-link to="/myIndex">
                     <span class="login-btn">{{info?info.nickName||info.mobile:''}}</span>
-                  </a>
+                  </router-link>
                 </li>
                 <li v-show="!show" class="login-bar-item">
                   <span class="login-btn" @click="signOut()">退出</span>
@@ -125,7 +125,7 @@
 </template>
 
 <script>
-import { getWebTopData, getMenuList } from "@/api/home";
+import { getWebTopDataApi, getMenuListApi } from "@/api/home";
 export default {
   data() {
     return {
@@ -137,7 +137,21 @@ export default {
       menuList: [],
       barListShow: true,
       searchShow: true,
-      search: ""
+      search: "",
+      pathList: [
+        ["/industryNews"],
+        [
+          "/miningNews",
+          "/miningNews/coinEarnings",
+          "/miningNews/coinMinerList",
+          "/miningNews/takeCoinHelp",
+          "/miningNews/coinMinerEvaluating"
+        ],
+        ["/specialTopic", "/specialTopic/domestic", "/specialTopic/foreign"],
+        ["/industryCharacter"],
+        ["/blockChainApplication"],
+        ["/college", "/college/library", "/college/phrase"]
+      ]
     };
   },
   mounted() {
@@ -157,14 +171,13 @@ export default {
   },
   methods: {
     getTopData() {
-      getWebTopData().then(res => {
+      getWebTopDataApi().then(res => {
         this.topData = res.data;
       });
     },
     getMenu() {
-      getMenuList()
+      getMenuListApi()
         .then(res => {
-          console.log(res);
           this.menuList = res.data;
         })
         .catch(err => {
@@ -173,7 +186,7 @@ export default {
         });
     },
     onSubmit() {
-      window.location.href = `./searchResult.html?search=${this.search}`;
+     this.$router.push("/searchResult")
     }
     // signOut() {
     //   sessionStorage.removeItem("info");
@@ -287,6 +300,7 @@ export default {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     > ul {
       display: flex;
     }
